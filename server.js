@@ -18,5 +18,11 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
+const port=3030
+const server=app.listen(port,listening)
+function listening()
+{
+console.log(`Server is running on port ${port}`);
+}
 
 // Setup Server
