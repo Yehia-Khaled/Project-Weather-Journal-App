@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../../:\Education\Courses\Web Specialization\Web Development Professional Nanodegree Program\3. Web APIs and Asynchronous Applications\Project Weather Journal App\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
