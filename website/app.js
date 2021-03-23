@@ -38,24 +38,38 @@ function performaction()
     //get feelings value when user click generate
     const feelings=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
+/*
     getzipcode(baseurladdress,zipcode,unit,apikey)
-}
-/* TODO Function to GET web api data temp */
-const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
-    const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data)
-    {
-    const Data=data.json();//convert data to json
-        if (Data.cod===200)
+*/
+    /* TODO Function to GET web api data temp */
+    const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
+        const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data)
         {
-            console.log(data.main.temp)
-            postData('/projectdata', {Temperature:data.temp, Date: newdate, fav:favFact} );
+            const Data=data.json();//convert data to json
+            if (Data.cod===200)
+            {
+                console.log(data.main.temp)
+                postData('/projectdata', {Temperature:data.temp, Date: newDate, Userrespones:feelings } );
 
+            }
+        }).catch(error=>{
+            console.log("error",error)
+        }).then(
+        UpdateUI()
+        )
+}
+    const UpdateUI = async () => {
+        const request = await fetch('/all');
+        try{
+            const allData = await request.json();
+            document.getElementById('date').innerHTML = allData[0].Date;
+            document.getElementById('temp').innerHTML = allData[0].Temperature;
+            document.getElementById('content').innerHTML = allData[0].Userrespones;
+
+        }catch(error){
+            console.log("error", error);
         }
-    }).catch(error=>{
-        console.log("error",error)
-    }).then(function (data){
-
-    })
+    }
 
     /*    try {
         const data = await res.json();// convert data to json
