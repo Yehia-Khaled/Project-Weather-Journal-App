@@ -6,7 +6,24 @@ const unit='&units=metric';
 /*//TODO Test URL
 alert(baseurladdress+12345+unit+apikey);*/
 /* End Global Variables */
-
+/* TODO Helper function */
+//TODO async PostData function
+const postData= async(url='',data={})=>{
+    const response =await fetch(url,{
+        method: 'POST',
+        credentials: 'same-origin',
+        headers:{
+            'content-type':'application/json',
+        },
+        body:JSON.stringify(data),//body data type must match"content-type" header
+    });
+    try{
+        const newData=await response.json();
+        return newData
+    }catch(error){
+        console.log("error",error);
+    }
+}
 //create event listener when click in generate 
 document.getElementById('generate').addEventListener('click',performaction)
 //TODO perform action function "called with event listener"
@@ -25,8 +42,22 @@ function performaction()
 }
 /* TODO Function to GET web api data temp */
 const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
-    const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`)
-    try {
+    const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data)
+    {
+    const Data=data.json();//convert data to json
+        if (Data.cod===200)
+        {
+            console.log(data.main.temp)
+            postData('/projectdata', {Temperature:data.temp, Date: newdate, fav:favFact} );
+
+        }
+    }).catch(error=>{
+        console.log("error",error)
+    }).then(function (data){
+
+    })
+
+    /*    try {
         const data = await res.json();// convert data to json
         if (data.cod === 200)
             //return data.main.temp;
@@ -35,10 +66,8 @@ const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
     } catch (error) {
         console.log("error", error)
         //appropriately handle error
-    }
-/*    .then(function (data)){
-
     }*/
+
 }
 
 
