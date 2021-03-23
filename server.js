@@ -26,6 +26,10 @@ console.log(`Server is running on port ${port}`);
 }
 
 // Setup Server
-app.get('/projectdate',(res,req)=>{
+app.post('/projectdate',(res,req)=>{
+    res.send(projectData)
+})
+
+app.get('/all',(res,req)=>{
     res.send(projectData)
 })

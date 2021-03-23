@@ -3,13 +3,13 @@
 const apikey='&appid=78109ed9196112b0a5be3e40a1432a19';
 const baseurladdress='https://api.openweathermap.org/data/2.5/weather?zip=';
 const unit='&units=metric';
-/*//Test URL
+/*//TODO Test URL
 alert(baseurladdress+12345+unit+apikey);*/
 /* End Global Variables */
 
 //create event listener when click in generate 
 document.getElementById('generate').addEventListener('click',performaction)
-//create perform action function "called with event listener"
+//TODO perform action function "called with event listener"
 function performaction()
 {
     // Create a new date instance dynamically with JS
@@ -23,21 +23,46 @@ function performaction()
     //create function to get zipcode with parameters (
     getzipcode(baseurladdress,zipcode,unit,apikey)
 }
-/* Function to GET web api data temp */
-const getzipcode= async (baseurl,zipcode,unit,apikey)=>
-{
-    const res=await fetch(baseurl+zipcode+unit+apikey)
-    try
-    {
-        const data=await res.json();// convert data to json
+/* TODO Function to GET web api data temp */
+const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
+    const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`)
+    try {
+        const data = await res.json();// convert data to json
         console.log(data);
-        if (data.cod===200)
-        return data.main.temp;
+        if (data.cod === 200)
+            return data.main.temp;
         else
             alert("error")
-    }catch (error){
-        console.log("error",error)
+    } catch (error) {
+        console.log("error", error)
         //appropriately handle error
     }
 
 }
+
+
+//code archive
+/*// TODO-Async-POST
+const postData= async(url='',data={})=>{
+    const response =await fetch(url,{
+        method: 'POST',
+        credentials: 'same-origin',
+        headers:{
+            'content-type':'application/json',
+        },
+        body:JSON.stringify(data),//body data type must match"content-type" header
+    });
+    try{
+        const newData=await response.json();
+        return newData
+    }catch(error){
+        console.log("error",error);
+    }
+}
+function postGet(){
+    postData('/projectdata',{fav:'lion'})
+        .then(function(data){
+            getzipcode('/all')
+        })
+}
+postGet()*/
