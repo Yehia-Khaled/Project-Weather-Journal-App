@@ -1,10 +1,10 @@
 /* Global Variables */
 //setup API credentials from OpenWeatherMap website
 const apikey='&appid=78109ed9196112b0a5be3e40a1432a19';
-const baseurl='https://api.openweathermap.org/data/2.5/weather?zip=';
+const baseurladdress='https://api.openweathermap.org/data/2.5/weather?zip=';
 const unit='&units=metric';
-
-
+/*//Test URL
+alert(baseurladdress+12345+unit+apikey);*/
 /* End Global Variables */
 
 //create event listener when click in generate 
@@ -21,7 +21,7 @@ function performaction()
     //get feelings value when user click generate
     const feelings=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
-    getzipcode(baseurl,zipcode,unit,apikey)
+    getzipcode(baseurladdress,zipcode,unit,apikey)
 }
 /* Function to GET web api data temp */
 const getzipcode= async (baseurl,zipcode,unit,apikey)=>
