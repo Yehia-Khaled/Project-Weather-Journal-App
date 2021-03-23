@@ -24,5 +24,15 @@ function performaction()
 }
 const getzipcode= async (baseurl,zipcode,unit,apikey)=>
 {
+    const res=await fetch(baseurl+zipcode+unit+apikey)
+    try
+    {
+        const data=await res.json();// convert data to json
+        console.log(data);
+        return data;
+    }catch (error){
+        console.log("error",error)
+        //appropriately handle error
+    }
 
 }
