@@ -30,6 +30,6 @@ app.post('/projectdate',(res,req)=>{
     res.send(projectData)
 })
 
-app.get('/all',(res,req)=>{
+/*app.get('/all',(res,req)=>{
     res.send(projectData)
-})
+})*/

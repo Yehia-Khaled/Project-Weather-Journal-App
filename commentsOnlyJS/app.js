@@ -6,7 +6,7 @@
 
 /* Function to GET Web API Data*/
 
-/* Function to POST data */
+/* Function to POST data */ //not yet
 
 
-/* Function to GET Project Data */
+/* Function to GET Project Data */ //not yet

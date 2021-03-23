@@ -28,16 +28,17 @@ const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
     const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`)
     try {
         const data = await res.json();// convert data to json
-        console.log(data);
         if (data.cod === 200)
-            return data.main.temp;
-        else
-            alert("error")
+            //return data.main.temp;
+            // console data temperature
+            console.log(data.main.temp);
     } catch (error) {
         console.log("error", error)
         //appropriately handle error
     }
+/*    .then(function (data)){
 
+    }*/
 }
 
 
