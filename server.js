@@ -26,3 +26,6 @@ console.log(`Server is running on port ${port}`);
 }
 
 // Setup Server
+app.get('/projectdate',(res,req)=>{
+
+})
