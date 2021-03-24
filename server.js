@@ -33,7 +33,9 @@ app.post('/projectdate',(res,req)=>{
         userinput: req.body.Userrespones
     }
     projectData.push(newEntry)*/
-    res.send(projectData)
+    projectData.push(req.body);
+    /*res.send(projectData)*/
+    console.log(projectData)
 })
 
 app.get('/all',(res,req)=>{

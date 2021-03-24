@@ -24,7 +24,7 @@ const postData= async(url='',data={})=>{
         console.log("error",error);
     }
 }
-//create event listener when click in generate 
+//create event listener when click in generate
 document.getElementById('generate').addEventListener('click',performaction)
 //TODO perform action function "called with event listener"
 function performaction()
@@ -41,50 +41,58 @@ function performaction()
     getuserdata (baseurladdress,zipcode,unit,apikey,feelings,newDate)
 
 }
-    /* TODO Function to GET web api data temp */
-    const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=> {
-        const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
-            const Data = data.json();//convert data to json
-            if (Data.cod === 200) {
-                console.log(data.main.temp)
-                //postData
-                postData('/projectdata', {Temperature: data.temp, Date: newDate, Userrespones: feelings});
-            }
-        }).then(
-            //TODO promise update UI elements
-            UpdateUI()
-        )
+/* TODO Function to GET web api data temp */
+const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=> {
+
+    fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
+        return data.json();//convert data to json
+
+    }).then((Data)=>{
+        //test temp
+        console.log(Data.main.temp);
+        //Test data ,feelings,date
+        console.log(Data);
+        console.log(feelings)
+        console.log(newDate);
+
+        //postData
+        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelings});
+    }).then(
+        //TODO promise update UI elements
+        UpdateUI()
+    )
 }///TODO Update UI async Function
-    const UpdateUI = async () => {
-        const request = await fetch('/all');
-        try{
-            const allData = await request.json();
-            console.log(allData)
-            document.getElementById('date').innerHTML = allData[0].Date;
-            document.getElementById('temp').innerHTML = allData[0].Temperature;
-            document.getElementById('content').innerHTML = allData[0].Userrespones;
+const UpdateUI = async () => {
+    const request = await fetch('/all');
+    try{
+        const allData = await request.json();
+        console.log(allData)
+        document.getElementById('date').innerHTML = allData[0].Date;
+        document.getElementById('temp').innerHTML = allData[0].Temperature;
+        document.getElementById('content').innerHTML = allData[0].Userrespones;
 
-        }catch(error){
-            console.log("error", error);
-        }
+    }catch(error){
+        console.log("error", error);
     }
+}
 
-    /*    try {
-        const data = await res.json();// convert data to json
-        if (data.cod === 200)
-            //return data.main.temp;
-            // console data temperature
-            console.log(data.main.temp);
-    } catch (error) {
-        console.log("error", error)
-        //appropriately handle error
-    }*/
+
 
 
 
 
 //code archive
-/*// TODO-Async-POST
+/* try {
+    const data = await res.json();// convert data to json
+    if (data.cod === 200)
+        //return data.main.temp;
+        // console data temperature
+        console.log(data.main.temp);
+} catch (error) {
+    console.log("error", error)
+    //appropriately handle error
+    }
+    // TODO-Async-POST
 const postData= async(url='',data={})=>{
     const response =await fetch(url,{
         method: 'POST',

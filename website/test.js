@@ -46,25 +46,21 @@ const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=>
 
     fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
-        /*//Test data ,feelings,date
+
+    }).then((Data)=>{
+        //test temp
+        console.log(Data.main.temp);
+         //Test data ,feelings,date
         console.log(Data);
         console.log(feelings)
         console.log(newDate);
-        */
-        /*
-                if (Data.cod === 200) {
-        */
-    }).then((Data)=>{
-        console.log(Data.main.temp);
+
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelings});
-    })
-
-
-    /*.then(
+    }).then(
         //TODO promise update UI elements
         UpdateUI()
-    )*/
+    )
 }///TODO Update UI async Function
 const UpdateUI = async () => {
     const request = await fetch('/all');
@@ -80,7 +76,13 @@ const UpdateUI = async () => {
     }
 }
 
-/*    try {
+
+
+
+
+
+//code archive
+/* try {
     const data = await res.json();// convert data to json
     if (data.cod === 200)
         //return data.main.temp;
@@ -89,13 +91,8 @@ const UpdateUI = async () => {
 } catch (error) {
     console.log("error", error)
     //appropriately handle error
-}*/
-
-
-
-
-//code archive
-/*// TODO-Async-POST
+    }
+    // TODO-Async-POST
 const postData= async(url='',data={})=>{
     const response =await fetch(url,{
         method: 'POST',
