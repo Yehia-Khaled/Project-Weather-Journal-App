@@ -3,26 +3,27 @@
 const apikey='&appid=78109ed9196112b0a5be3e40a1432a19';
 const baseurladdress='https://api.openweathermap.org/data/2.5/weather?zip=';
 const unit='&units=metric';
+//make zipcode global ,i well get value it when click on generate
+const zipcode=document.getElementById('zip');
+//make feeling global ,i well get value it when click on generate
+const feeling=document.getElementById('feelings').value;
 /*//TODO Test URL
 alert(baseurladdress+12345+unit+apikey);*/
 /* End Global Variables */
 /* TODO Helper function */
-//TODO async PostData function
+//TODO async PostData function using then and catch function
 const postData= async(url='',data={})=>{
-    const response =await fetch(url,{
+    fetch(url,{
         method: 'POST',
         credentials: 'same-origin',
         headers:{
             'content-type':'application/json',
         },
         body:JSON.stringify(data),//body data type must match"content-type" header
-    });
-    try{
-        const newData=await response.json();
-        return newData
-    }catch(error){
-        console.log("error",error);
-    }
+    }).then(function(data){
+        return data.json();
+    }).catch(error=>console.log(error))
+
 }
 //create event listener when click in generate
 document.getElementById('generate').addEventListener('click',performaction)
@@ -32,13 +33,10 @@ function performaction()
     // Create a new date instance dynamically with JS
     let d = new Date();
     let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-    //get zipcode value when user click generate
-    const zipcode=document.getElementById('zip').value;
-    //get feelings value when user click generate
-    const feeling=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
-    getuserdata (baseurladdress,zipcode,unit,apikey,feeling,newDate)
+/*
+    getuserdata (baseurladdress,zipcode.value,unit,apikey,feeling.value,newDate)
+*/
 
 }
 /* TODO Function to GET web api data temp */
@@ -46,14 +44,14 @@ const getuserdata= async (baseurladdress,zipcode,unit,apikey,feeling,newDate)=> 
 
     fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
-
+        //Test data ,feelings,date,temp
+        console.log(feeling)
+        console.log(newDate);
     }).then((Data)=>{
-        /*
         //Test data ,feelings,date,temp
         console.log(Data);
-        console.log(feelings)
+        console.log(feeling)
         console.log(newDate);
-        */
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling});
