@@ -90,6 +90,8 @@ function Doaction()
 
     let zipvalue=zipcode.value;
     let feelingvalue =feeling.value;
+    console.log("1 ",zipvalue)
+    console.log("1 ",feelingvalue)
     getuserdata (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDate)
 
 }
@@ -98,14 +100,14 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
     fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
+/*        //Test data ,feelings,date,temp
+        console.log(feelingvalue)
+        console.log(newDate);*/
+    }).then((Data)=>{
         //Test data ,feelings,date,temp
+        console.log(Data.main.temp);
         console.log(feelingvalue)
         console.log(newDate);
-    }).then((Data)=>{
-        /*//Test data ,feelings,date,temp
-        console.log(Data);
-        console.log(feeling)
-        console.log(newDate);*/
 
         //postData
     postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling.value});
