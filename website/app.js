@@ -48,12 +48,12 @@ const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=>
         return data.json();//convert data to json
 
     }).then((Data)=>{
-        //test temp
-        console.log(Data.main.temp);
-        //Test data ,feelings,date
+        /*
+        //Test data ,feelings,date,temp
         console.log(Data);
         console.log(feelings)
         console.log(newDate);
+        */
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelings});
