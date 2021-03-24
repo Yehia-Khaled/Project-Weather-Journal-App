@@ -34,24 +34,24 @@ function performaction()
     let d = new Date();
     let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
     //create function to get zipcode with parameters (
-/*
-    getuserdata (baseurladdress,zipcode.value,unit,apikey,feeling.value,newDate)
-*/
+    let zipvalue=zipcode.value;
+    let feelingvalue =feeling.value;
+    getuserdata (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDate)
 
 }
 /* TODO Function to GET web api data temp */
-const getuserdata= async (baseurladdress,zipcode,unit,apikey,feeling,newDate)=> {
+const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDate)=> {
 
-    fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
+    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
         //Test data ,feelings,date,temp
-        console.log(feeling)
+        console.log(feelingvalue)
         console.log(newDate);
     }).then((Data)=>{
-        //Test data ,feelings,date,temp
+        /*//Test data ,feelings,date,temp
         console.log(Data);
         console.log(feeling)
-        console.log(newDate);
+        console.log(newDate);*/
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling});
