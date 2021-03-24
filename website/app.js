@@ -38,30 +38,28 @@ function performaction()
     //get feelings value when user click generate
     const feelings=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
-/*
-    getzipcode(baseurladdress,zipcode,unit,apikey)
-*/
-    /* TODO Function to GET web api data temp */
-    const getzipcode= async (baseurladdress,zipcode,unit,apikey)=> {
-        const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data)
-        {
-            const Data=data.json();//convert data to json
-            if (Data.cod===200)
-            {
-                console.log(data.main.temp)
-                postData('/projectdata', {Temperature:data.temp, Date: newDate, Userrespones:feelings } );
+    getuserdata (baseurladdress,zipcode,unit,apikey,feelings,newDate)
 
-            }
-        }).catch(error=>{
-            console.log("error",error)
-        }).then(
-        UpdateUI()
-        )
 }
+    /* TODO Function to GET web api data temp */
+    const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=> {
+        const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
+            const Data = data.json();//convert data to json
+            if (Data.cod === 200) {
+                console.log(data.main.temp)
+                //postData
+                postData('/projectdata', {Temperature: data.temp, Date: newDate, Userrespones: feelings});
+            }
+        }).then(
+            //TODO promise update UI elements
+            UpdateUI()
+        )
+}///TODO Update UI async Function
     const UpdateUI = async () => {
         const request = await fetch('/all');
         try{
             const allData = await request.json();
+            console.log(allData)
             document.getElementById('date').innerHTML = allData[0].Date;
             document.getElementById('temp').innerHTML = allData[0].Temperature;
             document.getElementById('content').innerHTML = allData[0].Userrespones;
@@ -82,7 +80,7 @@ function performaction()
         //appropriately handle error
     }*/
 
-}
+
 
 
 //code archive

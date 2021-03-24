@@ -27,6 +27,12 @@ console.log(`Server is running on port ${port}`);
 
 // Setup Server
 app.post('/projectdate',(res,req)=>{
+/*    newEntry = {
+        Temperature: req.body.temp,
+        Date: req.body.Date,
+        userinput: req.body.Userrespones
+    }
+    projectData.push(newEntry)*/
     res.send(projectData)
 })
 
@@ -34,3 +40,4 @@ app.get('/all',(res,req)=>{
     res.send(projectData)
     console.log(projectData)
 })
+
