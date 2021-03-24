@@ -38,22 +38,33 @@ function performaction()
     //get feelings value when user click generate
     const feelings=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
-    getuserdata (baseurladdress,zipcode,unit,apikey)
+    getuserdata (baseurladdress,zipcode,unit,apikey,feelings,newDate)
 
 }
 /* TODO Function to GET web api data temp */
-const getuserdata= async (baseurladdress,zipcode,unit,apikey)=> {
-    const res = await fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
-        const Data = data.json();//convert data to json
-        if (Data.cod === 200) {
-            console.log(data.main.temp)
-            //postData
-            postData('/projectdata', {Temperature: data.temp, Date: newDate, Userrespones: feelings});
-        }
-    }).then(
+const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=> {
+
+    fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
+        return data.json();//convert data to json
+        /*//Test data ,feelings,date
+        console.log(Data);
+        console.log(feelings)
+        console.log(newDate);
+        */
+        /*
+                if (Data.cod === 200) {
+        */
+    }).then((Data)=>{
+        console.log(Data.main.temp);
+        //postData
+        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelings});
+    })
+
+
+    /*.then(
         //TODO promise update UI elements
         UpdateUI()
-    )
+    )*/
 }///TODO Update UI async Function
 const UpdateUI = async () => {
     const request = await fetch('/all');
