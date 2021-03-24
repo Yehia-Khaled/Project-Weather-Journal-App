@@ -36,13 +36,13 @@ function performaction()
     //get zipcode value when user click generate
     const zipcode=document.getElementById('zip').value;
     //get feelings value when user click generate
-    const feelings=document.getElementById('feelings').value;
+    const feeling=document.getElementById('feelings').value;
     //create function to get zipcode with parameters (
-    getuserdata (baseurladdress,zipcode,unit,apikey,feelings,newDate)
+    getuserdata (baseurladdress,zipcode,unit,apikey,feeling,newDate)
 
 }
 /* TODO Function to GET web api data temp */
-const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=> {
+const getuserdata= async (baseurladdress,zipcode,unit,apikey,feeling,newDate)=> {
 
     fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
@@ -56,7 +56,7 @@ const getuserdata= async (baseurladdress,zipcode,unit,apikey,feelings,newDate)=>
         */
 
         //postData
-        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelings});
+        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling});
     }).then(
         //TODO promise update UI elements
         UpdateUI()
@@ -66,10 +66,24 @@ const UpdateUI = async () => {
     const request = await fetch('/all');
     try{
         const allData = await request.json();
+        const date =allData[0].Date
+        const temperature=allData[0].Temperature;
+        const response=allData[0].Userrespones
+        if (temperature>-20 && temperature<10 )
+            document.getElementById('tips').textContent ="wire your caught it's very cold" ;
+        else if(temperature>10 && temperature<25)
+            document.getElementById('tips').textContent ="wire your caught it's  cold" ;
+        else if(temperature>25 && temperature<37)
+            document.getElementById('tips').textContent ="Enjoy your time it's sunny" ;
+        else if(temperature>37 )
+            document.getElementById('tips').textContent ="it's very hot be careful" ;
+
+        else if(temperature>37 )
+            document.getElementById('tips').textContent ="Be careful" ;
         console.log(allData)
-        document.getElementById('date').innerHTML = allData[0].Date;
-        document.getElementById('temp').innerHTML = allData[0].Temperature;
-        document.getElementById('content').innerHTML = allData[0].Userrespones;
+        document.getElementById('date').innerHTML =date ;
+        document.getElementById('temp').innerHTML =temperature;
+        document.getElementById('content').innerHTML =response ;
 
     }catch(error){
         console.log("error", error);
