@@ -124,21 +124,39 @@ const UpdateElements = async () => {
     fetch('/all').then(function (data){
         return data.json()
     }).then(data=>{
-            const Date = data[0].Date
-            const temperature = data[0].Temperature;
-            const response = data[0].userinput
+            const Date = data.Date;
+            const temperature = data.Temperature;
+            const response = data.userinput
             //call tips for weather function
             tips_for_weather(temperature)
             // get data on console to test
             console.log(data)
             document.getElementById('date').innerHTML = Date;
-            document.getElementById('temp').innerHTML = temperature;
+            document.getElementById('temp').innerHTML =temperature;
             document.getElementById('content').innerHTML = response;
-        }
+    /*You need to use innerHTML for mapping data in UI as below:
+document.getElementById('date').innerHTML = Date:${allData.date};
+document.getElementById('temp').innerHTML = Temperature:${allData.temp};
+document.getElementById('content').innerHTML = I feel:${allData.content};*/
+    }
 
     ).catch(error => console.log("Error", error))
 }
-
+/*
+const updateUI = async()=>{
+    const request = await fetch('/all')
+    try{
+        const allData = await request.json();
+        console.log(allData)
+        //tere is error here":" with this method Date"":""${allData.date}; and same in all assign temp, content
+        document.getElementById('date').innerHTML = Date:${allData.date};
+        document.getElementById('temp').innerHTML = Temperature:${allData.temp};
+        document.getElementById('content').innerHTML = I feel:${allData.content};
+    }catch(err){
+        console.log('error',err);
+    }
+}
+*/
 
 
 

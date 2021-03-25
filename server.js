@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
- const projectData = [];
+  projectData = {};
 
 // Require Express to run server and routes
 const express= require ('express');
@@ -29,26 +29,16 @@ console.log(`Server is running on port ${port}`);
 
 //TODO post data function
 app.post('/projectdate',(req,res)=>{
-    data = {
-        Temperature: req.body.Temperature,
-        Date: req.body.Date,
-        userinput: req.body.Userrespones
-    }
-/*!// TODO remove data of array before add new data
-projectData.length=0;
-    console.log("data value after remove",projectData)
-// push data*/
-    projectData.push(data);
-    console.log("Data after push ",projectData)
-/*
-    //use another method
-    res.send(projectData);
-    console.log("data project ",projectData)
-*/
-/*
-    //third method
-    projectData=data;
-*/
+    let data= req.body;
+    console.log("Server side data",data)
+    //get value for object project data
+    projectData["Temperature"]= data.Temperature;
+    projectData["Date"]= data.Date;
+    projectData["userinput"]= data.Userrespones;
+    //TODO send data to post
+    res.send(projectData)
+
+    console.log("Data after get value  ",projectData)
 
 })
 // TODO get data function
