@@ -27,7 +27,7 @@ console.log(`Server is running on port ${port}`);
 
 // Setup Server
 //TODO post data function
-app.post('/projectdate',(res,req)=>{
+app.post('/projectdate',(req,res)=>{
     data = {
         Temperature: req.body.temp,
         Date: req.body.Date,
@@ -36,7 +36,7 @@ app.post('/projectdate',(res,req)=>{
     projectData.push(data)
 })
 // TODO get data function
-app.get('/all',(res,req)=>{
+app.get('/all',(req,res)=>{
     res.send(projectData)
     console.log(projectData)
 })
