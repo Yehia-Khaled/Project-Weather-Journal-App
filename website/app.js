@@ -101,32 +101,3 @@ const UpdateElements = async () => {
 
     ).catch(error => console.log("Error", error))
 }
-/*//TODO Async with fetch ,try ,await and catch error
-const UpdateElements = async()=>{
-    const request = await fetch('/all')
-    try{
-        const allData = await request.json();
-        console.log(allData)
-        document.getElementById('date').innerHTML =  allData.Date ;
-        document.getElementById('temp').innerHTML =  allData.Temperature ;
-        tips_for_weather(allData.Temperature)
-        document.getElementById('content').innerHTML =  allData.userinput ;
-    }catch(err){
-        console.log('error',err);
-    }
-}*/
-/*
-const updateUI = async()=>{
-    const request = await fetch('/all')
-    try{
-        const allData = await request.json();
-        console.log(allData)
-        //tere is error here":" with this method Date"":""${allData.date}; and same in all assign temp, content
-        document.getElementById('date').innerHTML = Date:${allData.date};
-        document.getElementById('temp').innerHTML = Temperature:${allData.temp};
-        document.getElementById('content').innerHTML = I feel:${allData.content};
-    }catch(err){
-        console.log('error',err);
-    }
-}
-*/
