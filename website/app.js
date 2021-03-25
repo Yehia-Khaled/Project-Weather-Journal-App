@@ -118,12 +118,7 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
         console.log("Error",error)
     })
 }
-/*/!* TODO Function to GET web api data temp *!/
-const gettemp=async(baseurladdress,zipcode,unit,apikey)=>{
-    fetch(`${baseurladdress}${zipcode}${unit}${apikey}`).then(function (data){return data.json();
-    }).catch(error=>{console.log("Error",error)})
 
-}*/
 //TODO Update UI async Function
 const UpdateElements = async () => {
     fetch('/all').then(function (data){

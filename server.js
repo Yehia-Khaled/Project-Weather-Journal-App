@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = [];
+ const projectData = [];
 
 // Require Express to run server and routes
 const express= require ('express');
@@ -34,17 +34,26 @@ app.post('/projectdate',(req,res)=>{
         Date: req.body.Date,
         userinput: req.body.Userrespones
     }
-/*// TODO remove data of array before add new data
+/*!// TODO remove data of array before add new data
 projectData.length=0;
     console.log("data value after remove",projectData)
 // push data*/
     projectData.push(data);
     console.log("Data after push ",projectData)
+/*
+    //use another method
+    res.send(projectData);
+    console.log("data project ",projectData)
+*/
+/*
+    //third method
+    projectData=data;
+*/
 
 })
 // TODO get data function
 app.get('/all',(req,res)=>{
     res.send(projectData)
-    console.log(projectData)
+    console.log("from get method",projectData)
 })
 
