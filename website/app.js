@@ -7,14 +7,10 @@ const unit='&units=metric';
 /*//TODO Test URL
 alert(baseurladdress+12345+unit+apikey);*/
 const zipcode=document.getElementById('zip') ;
-/*
-    console.log(zipcode)
-*/
+
 //get feelings value when click on generate
 const feeling=document.getElementById('feelings') ;
-/*
-    console.log(feeling)
-*/
+
 /* End Global Variables */
 /* TODO Helper function */
 //TODO async PostData function using then and catch function
@@ -54,39 +50,6 @@ function Doaction()
     // Create a new date instance dynamically with JS
     let d = new Date();
     let newDate = d.getMonth()+1+ '.'+ d.getDate()+'.'+ d.getFullYear();
-    //get zipcode value when click on generate
-    /*    const zipcode=document.getElementById('zip').value;
-    /!*
-        console.log(zipcode)
-    *!/
-        //get feelings value when click on generate
-        const feeling=document.getElementById('feelings').value;
-    /!*
-        console.log(feeling)
-    *!/*/
-    //create function to get zipcode with parameters (
-    /*
-        getuserdata (baseurladdress,zipcode.value,unit,apikey,feeling.value,newDate)
-    */
-    /*
-        const getdata= async ( )=> {
-    */
-    /*        console.log(zipcode.value)
-            //TODO promise gettemp function
-            gettemp(baseurladdress,zipcode.value,unit,apikey).then((Data)=>{
-                //Test data ,feelings,date,temp
-                console.log(Data.main.temp);
-                console.log(feeling.value)
-                console.log(newDate);
-
-                //postData
-                postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling.value});
-            }).then(
-                //TODO promise update elements
-                UpdateElements()
-            ).catch(error=>{
-                console.log("Error",error)
-            })*/
 
     let zipvalue=zipcode.value;
     let feelingvalue =feeling.value;
@@ -100,9 +63,7 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
     fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
-        /*        //Test data ,feelings,date,temp
-                console.log(feelingvalue)
-                console.log(newDate);*/
+
     }).then((Data)=>{
         //Test data ,feelings,date,temp
         console.log(Data.main.temp);
@@ -111,10 +72,10 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling.value});
-    }).then(
+    }).then(()=>{
         //TODO promise update elements
         UpdateElements()
-    ).catch(error=>{
+    }).catch(error=>{
         console.log("Error",error)
     })
 }
@@ -135,10 +96,7 @@ const UpdateElements = async () => {
             document.getElementById('date').innerHTML = Date;
             document.getElementById('temp').innerHTML =temperature;
             document.getElementById('content').innerHTML = response;
-    /*You need to use innerHTML for mapping data in UI as below:
-document.getElementById('date').innerHTML = Date:${allData.date};
-document.getElementById('temp').innerHTML = Temperature:${allData.temp};
-document.getElementById('content').innerHTML = I feel:${allData.content};*/
+
     }
 
     ).catch(error => console.log("Error", error))
@@ -172,43 +130,3 @@ const updateUI = async()=>{
     }
 }
 */
-
-
-
-
-
-//code archive
-/* try {
-    const data = await res.json();// convert data to json
-    if (data.cod === 200)
-        //return data.main.temp;
-        // console data temperature
-        console.log(data.main.temp);
-} catch (error) {
-    console.log("error", error)
-    //appropriately handle error
-    }
-    // TODO-Async-POST
-const postData= async(url='',data={})=>{
-    const response =await fetch(url,{
-        method: 'POST',
-        credentials: 'same-origin',
-        headers:{
-            'content-type':'application/json',
-        },
-        body:JSON.stringify(data),//body data type must match"content-type" header
-    });
-    try{
-        const newData=await response.json();
-        return newData
-    }catch(error){
-        console.log("error",error);
-    }
-}
-function postGet(){
-    postData('/projectdata',{fav:'lion'})
-        .then(function(data){
-            getzipcode('/all')
-        })
-}
-postGet()*/
