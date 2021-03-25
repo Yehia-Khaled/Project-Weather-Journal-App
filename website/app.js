@@ -120,6 +120,7 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 }
 
 //TODO Update UI async Function
+// TODO Async function with method fetch ,then and catch.
 const UpdateElements = async () => {
     fetch('/all').then(function (data){
         return data.json()
@@ -142,6 +143,20 @@ document.getElementById('content').innerHTML = I feel:${allData.content};*/
 
     ).catch(error => console.log("Error", error))
 }
+/*//TODO Async with fetch ,try ,await and catch error
+const UpdateElements = async()=>{
+    const request = await fetch('/all')
+    try{
+        const allData = await request.json();
+        console.log(allData)
+        document.getElementById('date').innerHTML =  allData.Date ;
+        document.getElementById('temp').innerHTML =  allData.Temperature ;
+        tips_for_weather(allData.Temperature)
+        document.getElementById('content').innerHTML =  allData.userinput ;
+    }catch(err){
+        console.log('error',err);
+    }
+}*/
 /*
 const updateUI = async()=>{
     const request = await fetch('/all')
