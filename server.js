@@ -34,7 +34,12 @@ app.post('/projectdate',(req,res)=>{
         Date: req.body.Date,
         userinput: req.body.Userrespones
     }
+/*// TODO remove data of array before add new data
+projectData.length=0;
+    console.log("data value after remove",projectData)
+// push data*/
     projectData.push(data);
+    console.log("Data after push ",projectData)
 
 })
 // TODO get data function
