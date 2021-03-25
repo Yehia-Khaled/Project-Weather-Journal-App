@@ -72,10 +72,10 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling.value});
-    }).then(()=>{
+    }).then(()=>
         //TODO promise update elements
         UpdateElements()
-    }).catch(error=>{
+    ).catch(error=>{
         console.log("Error",error)
     })
 }
