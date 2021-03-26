@@ -30,9 +30,9 @@ const postData= async(url='',data={})=>{
 //TODO Tips for weather
 function tips_for_weather(temp){
     if (temp > -20 && temp < 10)
-        document.getElementById('tips').textContent = "wire your caught it's very cold";
+        document.getElementById('tips').textContent = "wear your caught it's very cold";
     else if (temp > 10 && temp < 25)
-        document.getElementById('tips').textContent = "wire your caught it's  cold";
+        document.getElementById('tips').textContent = "wear your caught it's  cold";
     else if (temp > 25 && temp < 37)
         document.getElementById('tips').textContent = "Enjoy your time it's sunny";
     else if (temp > 37)
