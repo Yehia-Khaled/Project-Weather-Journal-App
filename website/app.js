@@ -61,7 +61,7 @@ function Doaction()
 /* TODO Function to GET web api data temp */
 const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDate)=> {
 
-    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
+/*    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
 
     }).then((Data)=>{
@@ -77,7 +77,24 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
         UpdateUI()
     ).catch(error=>{
         console.log("Error",error)
-    })
+    })*/
+    // TODO another method to fetch
+    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(
+        (json_data)=> { return json_data.json(); }
+    ).then(
+        (data)=> {
+            if (data.cod === 200) {
+                let temp = data.main.temp;
+                console.log(temp);
+                console.log(data);
+                // your post request
+            } else {
+                console.log(data.cod);
+                console.log(data.message);
+                console.log(data);
+            }
+
+        }).then(()=>UpdateUI())
 }
 
 //TODO Update UI async Function
