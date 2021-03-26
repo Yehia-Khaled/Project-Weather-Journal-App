@@ -79,6 +79,14 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
         console.log("Error",error)
     })*/
     // TODO another method to fetch
+    /*
+    * output of method
+    * Most Recent Entry
+undefined
+undefined
+undefined
+Be careful
+* */
     fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(
         (json_data)=> { return json_data.json(); }
     ).then(
