@@ -71,10 +71,10 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
         console.log(newDate);
 
         //postData
-        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feeling.value});
+        postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelingvalue});
     }).then(()=>
         //TODO promise update elements
-        UpdateElements()
+        UpdateUI()
     ).catch(error=>{
         console.log("Error",error)
     })
@@ -82,7 +82,7 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
 //TODO Update UI async Function
 // TODO Async function with method fetch ,then and catch.
-const UpdateElements = async () => {
+const UpdateUI = async () => {
     fetch('/all').then(function (data){
         return data.json()
     }).then(data=>{
