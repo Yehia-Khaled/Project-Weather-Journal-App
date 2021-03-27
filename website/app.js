@@ -96,6 +96,8 @@ Be careful
                 console.log(temp);
                 console.log(data);
                 // your post request
+                postData('/projectdate', {Temperature: data.main.temp, Date: newDate, Userrespones: feelingvalue});
+
             } else {
                 console.log(data.cod);
                 console.log(data.message);
