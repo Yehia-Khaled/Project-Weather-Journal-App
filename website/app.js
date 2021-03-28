@@ -1,5 +1,8 @@
 /* Global Variables */
 //setup API credentials from OpenWeatherMap website
+/*
+const data = require("express");
+*/
 const apikey='&appid=78109ed9196112b0a5be3e40a1432a19';
 const baseurladdress='https://api.openweathermap.org/data/2.5/weather?zip=';
 const unit='&units=metric';
@@ -108,11 +111,14 @@ Be careful
 }
 
 //TODO Update UI async Function
+/*
 // TODO Async function with method fetch ,then and catch.
 const UpdateUI = async () => {
-    fetch('/all').then(function (data){
-        return data.json()
+    fetch('/all')//fetch from all "get"
+     .then(function (data){
+        return data.json() //then get data and convert to json
     }).then(data=>{
+        //update value of html file with id
             const Date = data.Date;
             const temperature = data.Temperature;
             const response = data.userinput
@@ -127,4 +133,21 @@ const UpdateUI = async () => {
     }
 
     ).catch(error => console.log("Error", error))
+}
+*/
+
+// TODO Async function with method await, try,and catch.
+const UpdateUI = async () => {
+    const fetchingData = await fetch('/all');//fetch from all “get”
+    try {
+        const result = await fetchingData.json();
+        const Date = result.Date;
+        const temperature = result.Temperature;
+        const response = result.userinput;
+        document.getElementById('date').innerHTML = Date;
+        document.getElementById('temp').innerHTML =temperature;
+        document.getElementById('content').innerHTML = response;
+    }catch(err){
+        console.error(err);
+    }
 }
