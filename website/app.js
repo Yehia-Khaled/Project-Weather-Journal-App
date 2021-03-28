@@ -1,8 +1,5 @@
 /* Global Variables */
 //setup API credentials from OpenWeatherMap website
-/*
-const data = require("express");
-*/
 const apikey='&appid=78109ed9196112b0a5be3e40a1432a19';
 const baseurladdress='https://api.openweathermap.org/data/2.5/weather?zip=';
 const unit='&units=metric';
