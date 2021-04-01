@@ -61,10 +61,10 @@ function Doaction()
 /* TODO Function to GET web api data temp */
 const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDate)=> {
 
-/*    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
+    fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(function (data) {
         return data.json();//convert data to json
 
-    }).then((Data)=>{
+    }).then((Data) => {
         //Test data ,feelings,date,temp
         console.log(Data.main.temp);
         console.log(feelingvalue)
@@ -72,21 +72,15 @@ const getuserdata= async (baseurladdress,zipvalue,unit,apikey,feelingvalue,newDa
 
         //postData
         postData('/projectdate', {Temperature: Data.main.temp, Date: newDate, Userrespones: feelingvalue});
-    }).then(()=>
+    }).then(() =>
         //TODO promise update elements
         UpdateUI()
-    ).catch(error=>{
-        console.log("Error",error)
-    })*/
+    ).catch(error => {
+        console.log("Error", error)
+    })
+}
+/*
     // TODO another method to fetch
-    /*
-    * output of method
-    * Most Recent Entry
-undefined
-undefined
-undefined
-Be careful
-* */
     fetch(`${baseurladdress}${zipvalue}${unit}${apikey}`).then(
         (json_data)=> { return json_data.json(); }
     ).then(
@@ -107,8 +101,8 @@ Be careful
         }).then(()=>UpdateUI())
 }
 
+*/
 //TODO Update UI async Function
-/*
 // TODO Async function with method fetch ,then and catch.
 const UpdateUI = async () => {
     fetch('/all')//fetch from all "get"
@@ -131,7 +125,7 @@ const UpdateUI = async () => {
 
     ).catch(error => console.log("Error", error))
 }
-*/
+/*
 
 // TODO Async function with method await, try,and catch.
 const UpdateUI = async () => {
@@ -147,4 +141,4 @@ const UpdateUI = async () => {
     }catch(err){
         console.error(err);
     }
-}
+}*/
