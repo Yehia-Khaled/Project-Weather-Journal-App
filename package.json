@@ -1,5 +1,5 @@
 {
-  "name": "Project Weather Journal App",
+  "name": "project-weather-journal-app",
   "version": "1.0.0",
   "description": "node app ",
   "main": "server.js",
