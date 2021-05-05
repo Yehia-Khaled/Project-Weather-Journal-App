@@ -5,6 +5,7 @@
 const express= require ('express');
 // Start up an instance of app
 const app=express();
+const importData=require("./package.json")
 // Dependencies
 const bodyParser = require('body-parser')
 /* Middleware*/
@@ -26,7 +27,10 @@ console.log(`Server is running on port http://localhost:${port}`);
 }
 //test server
 app.get("/",(req,res)=>{
-    res.send("Hello World ")
+    res.send("Hello World")
+})
+app.get("/test",(req,res)=>{
+    res.send(importData)
 })
 // Setup Server
 /*
