@@ -12,20 +12,24 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cors for cross origin allowance
+/*// Cors for cross origin allowance
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('website'));*/
 
 const port = process.env.PORT || 3000;
-const server=app.listen(port,listening)
+const server=app.listen(port, listening)
 function listening()
 {
-console.log(`Server is running on port ${port}`);
+console.log(`Server is running on port http://localhost:${port}`);
 }
-
+//test server
+app.get("/",(req,res)=>{
+    res.send("Hello World ")
+})
 // Setup Server
+/*
 
 //TODO post data function
 app.post('/projectdate',(req,res)=>{
@@ -47,3 +51,4 @@ app.get('/all',(req,res)=>{
     console.log("from get method",projectData)
 })
 
+*/
